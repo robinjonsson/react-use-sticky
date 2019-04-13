@@ -1,10 +1,10 @@
 {
   "name": "react-use-sticky",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Observe when DOM element enters or leaves sticky state",
   "main": "src/index.js",
-  "dependencies": {
-    "react": "^16.8.6"
+  "peerDependencies": {
+    "react": "^16.8.0"
   },
   "devDependencies": {},
   "scripts": {
