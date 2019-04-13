@@ -1,0 +1,29 @@
+{
+  "name": "react-use-sticky",
+  "version": "0.1.0",
+  "description": "Observe when DOM element enters or leaves sticky state",
+  "main": "src/index.js",
+  "dependencies": {
+    "react": "^16.8.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robinJonsson/react-use-sticky.git"
+  },
+  "keywords": [
+    "react",
+    "hooks",
+    "sticky",
+    "css-position-sticky"
+  ],
+  "author": "Robin Jonsson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/robinJonsson/react-use-sticky/issues"
+  },
+  "homepage": "https://github.com/robinJonsson/react-use-sticky#readme"
+}
