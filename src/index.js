@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
  */
 export function useSticky() {
   const stickyRef = useRef(null);
-  const [isSticky, setIsSticky] = useState(false);
+  const [sticky, setSticky] = useState(false);
   const eventsToBind = [
     [document, "scroll"],
     [window, "resize"],
@@ -14,6 +14,16 @@ export function useSticky() {
   ];
 
   useEffect(() => {
+    // Observe when ref enters or leaves sticky state
+    // rAF https://stackoverflow.com/questions/41740082/scroll-events-requestanimationframe-vs-requestidlecallback-vs-passive-event-lis
+    function observe() {
+      const refPageOffset = stickyRef.current.getBoundingClientRect().top;
+      const stickyOffset = parseInt(getComputedStyle(stickyRef.current).top);
+      const stickyActive = refPageOffset === stickyOffset;
+
+      if (stickyActive && !sticky) setSticky(true);
+      else if (!stickyActive && sticky) setSticky(false);
+    }
     observe();
 
     // Bind events
@@ -21,22 +31,12 @@ export function useSticky() {
       eventPair[0].addEventListener(eventPair[1], observe);
     });
 
-    // Observe when element enters or leaves sticky state
-    function observe() {
-      const elementOffset = stickyRef.current.getBoundingClientRect().top;
-      const stickyOffset = parseInt(getComputedStyle(stickyRef.current).top);
-      const stickyActive = elementOffset === stickyOffset;
-
-      if (stickyActive && !isSticky) setIsSticky(true);
-      else if (!stickyActive && isSticky) setIsSticky(false);
-    }
-
     return () => {
       eventsToBind.forEach(eventPair => {
         eventPair[0].removeEventListener(eventPair[1], observe);
       });
     };
-  }, [stickyRef, isSticky]);
+  }, [stickyRef, sticky]);
 
-  return [stickyRef, isSticky];
+  return [stickyRef, sticky];
 }
