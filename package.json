@@ -18,7 +18,8 @@
     "react",
     "hooks",
     "sticky",
-    "css-position-sticky"
+    "css-position-sticky",
+    "position"
   ],
   "author": "Robin Jonsson",
   "license": "MIT",
