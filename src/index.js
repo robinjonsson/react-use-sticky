@@ -9,7 +9,6 @@ export function useSticky() {
   const [isSticky, setIsSticky] = useState(false);
   const eventsToBind = [
     [document, "scroll"],
-    [document, "touchmove"],
     [window, "resize"],
     [window, "orientationchange"]
   ];
@@ -19,7 +18,7 @@ export function useSticky() {
 
     // Bind events
     eventsToBind.forEach(eventPair => {
-      eventPair[0].addEventListener(eventPair[1], observe, { passive: true });
+      eventPair[0].addEventListener(eventPair[1], observe);
     });
 
     // Observe when element enters or leaves sticky state
