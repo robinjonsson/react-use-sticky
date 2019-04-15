@@ -19,7 +19,7 @@ export function useSticky() {
     function observe() {
       const refPageOffset = stickyRef.current.getBoundingClientRect().top;
       const stickyOffset = parseInt(getComputedStyle(stickyRef.current).top);
-      const stickyActive = refPageOffset === stickyOffset;
+      const stickyActive = refPageOffset <= stickyOffset;
 
       if (stickyActive && !sticky) setSticky(true);
       else if (!stickyActive && sticky) setSticky(false);
