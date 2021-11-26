@@ -10,16 +10,36 @@ A react hook for observing/watching `position: sticky` state on refs
 
 `useSticky` returns a pair of values, the ref to observe/watch and the current sticky state of the ref.
 
+Typescript
+
+```tsx
+const [headerBarRef, sticky] = useSticky<HTMLDivElement>();
+const style = {
+  position: 'sticky',
+  top: 0,
+  background: sticky ? 'green' : 'red',
+} as const;
+
+return (
+  <div ref={headerBarRef} style={style}>
+    HeaderBar
+  </div>
+);
+export default HeaderBar;
+```
+
+Javascript
+
 ```jsx
-import React from "react";
-import { useSticky } from "react-use-sticky";
+import React from 'react';
+import { useSticky } from 'react-use-sticky';
 
 function HeaderBar() {
   const [headerBarRef, sticky] = useSticky();
   const style = {
-    position: "sticky",
+    position: 'sticky',
     top: 0,
-    background: sticky ? "green" : "red"
+    background: sticky ? 'green' : 'red',
   };
 
   return (
@@ -30,4 +50,10 @@ function HeaderBar() {
 }
 
 export default HeaderBar;
+```
+
+## Build
+
+```bash
+npm run build
 ```

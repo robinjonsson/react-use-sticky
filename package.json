@@ -2,13 +2,13 @@
   "name": "react-use-sticky",
   "version": "0.1.3",
   "description": "Observe when DOM element enters or leaves sticky state",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "peerDependencies": {
     "react": "^16.8.0"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,15 @@
   "bugs": {
     "url": "https://github.com/robinJonsson/react-use-sticky/issues"
   },
-  "homepage": "https://github.com/robinJonsson/react-use-sticky#readme"
+  "homepage": "https://github.com/robinJonsson/react-use-sticky#readme",
+  "devDependencies": {
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^8.3.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "typescript": "^4.5.2"
+  }
 }

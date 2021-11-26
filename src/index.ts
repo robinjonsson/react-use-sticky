@@ -1,23 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 /**
  * Returns a ref, and a stateful value bound to the ref
- * @returns [Any, Boolean]
  */
-export function useSticky() {
-  const stickyRef = useRef(null);
+export function useSticky<T extends HTMLElement>() {
+  const stickyRef = useRef<T>(null);
   const [sticky, setSticky] = useState(false);
-  const eventsToBind = [
-    [document, "scroll"],
-    [window, "resize"],
-    [window, "orientationchange"]
-  ];
 
   useEffect(() => {
     // Observe when ref enters or leaves sticky state
     // rAF https://stackoverflow.com/questions/41740082/scroll-events-requestanimationframe-vs-requestidlecallback-vs-passive-event-lis
     function observe() {
-      if(!stickyRef.current) return;
+      if (!stickyRef.current) return;
       const refPageOffset = stickyRef.current.getBoundingClientRect().top;
       const stickyOffset = parseInt(getComputedStyle(stickyRef.current).top);
       const stickyActive = refPageOffset <= stickyOffset;
@@ -28,16 +22,16 @@ export function useSticky() {
     observe();
 
     // Bind events
-    eventsToBind.forEach(eventPair => {
-      eventPair[0].addEventListener(eventPair[1], observe);
-    });
+    document.addEventListener('scroll', observe);
+    window.addEventListener('resize', observe);
+    window.addEventListener('orientationchange', observe);
 
     return () => {
-      eventsToBind.forEach(eventPair => {
-        eventPair[0].removeEventListener(eventPair[1], observe);
-      });
+      document.removeEventListener('scroll', observe);
+      window.removeEventListener('resize', observe);
+      window.removeEventListener('orientationchange', observe);
     };
-  }, [stickyRef, sticky]);
+  }, [sticky]);
 
-  return [stickyRef, sticky];
+  return [stickyRef, sticky] as const;
 }

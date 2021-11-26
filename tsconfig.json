@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "allowJs": true,
+    "checkJs": false,
+    "outDir": "dist",
+    "rootDir": "src",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["*", "src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"],
+  "include": ["./src", "./test", "./*"]
+}
