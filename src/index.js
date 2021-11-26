@@ -17,6 +17,7 @@ export function useSticky() {
     // Observe when ref enters or leaves sticky state
     // rAF https://stackoverflow.com/questions/41740082/scroll-events-requestanimationframe-vs-requestidlecallback-vs-passive-event-lis
     function observe() {
+      if(!stickyRef.current) return;
       const refPageOffset = stickyRef.current.getBoundingClientRect().top;
       const stickyOffset = parseInt(getComputedStyle(stickyRef.current).top);
       const stickyActive = refPageOffset <= stickyOffset;
